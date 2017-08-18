@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const session    = require("express-session");
 const hbs        = require("express-handlebars");
 const mongoose   = require("mongoose");
+const passport   = require("passport");
+const MongoStore = require("connect-mongo")(session);
 
 const app = express();
 
@@ -29,6 +31,18 @@ app.use(bodyParser.json());
 
 // Configure static files
 app.use(express.static(path.resolve(__dirname, "public")));
+
+// Configure session
+app.use(session({
+  secret: "mysupersecret",
+  resave: true,
+  saveUninitialized: true,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
+
+// Configure passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.listen(3000, () => {
   console.log("Listening on port 3000");
