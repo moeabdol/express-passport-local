@@ -2,12 +2,20 @@
   "name": "express-passport-local",
   "version": "1.0.0",
   "description": "ExpressJS authentication example with Passport local strategy.",
-  "main": "app.js",
+  "main": "server.js",
   "repository": "https://github.com/moeabdol/express-passport-local",
   "author": "moeabdol <mohd.a.saed@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "node server"
+  },
   "dependencies": {
-    "express": "^4.15.4"
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.5",
+    "mongoose": "^4.11.7",
+    "passport": "^0.4.0"
   },
   "devDependencies": {
     "eslint": "^4.4.1"
