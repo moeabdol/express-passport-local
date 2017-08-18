@@ -7,6 +7,7 @@ const mongoose    = require("mongoose");
 const passport    = require("passport");
 const MongoStore  = require("connect-mongo")(session);
 const indexRouter = require("./routes");
+const usersRouter = require("./routes/users");
 
 const app = express();
 
@@ -47,6 +48,7 @@ app.use(passport.session());
 
 // Routes
 app.use(indexRouter);
+app.use(usersRouter);
 
 app.listen(3000, () => {
   console.log("Listening on port 3000");
