@@ -1,11 +1,12 @@
-const express    = require("express");
-const path       = require("path");
-const bodyParser = require("body-parser");
-const session    = require("express-session");
-const hbs        = require("express-handlebars");
-const mongoose   = require("mongoose");
-const passport   = require("passport");
-const MongoStore = require("connect-mongo")(session);
+const express     = require("express");
+const path        = require("path");
+const bodyParser  = require("body-parser");
+const session     = require("express-session");
+const hbs         = require("express-handlebars");
+const mongoose    = require("mongoose");
+const passport    = require("passport");
+const MongoStore  = require("connect-mongo")(session);
+const indexRouter = require("./routes");
 
 const app = express();
 
@@ -43,6 +44,9 @@ app.use(session({
 // Configure passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Routes
+app.use(indexRouter);
 
 app.listen(3000, () => {
   console.log("Listening on port 3000");
