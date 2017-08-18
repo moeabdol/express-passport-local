@@ -4,9 +4,19 @@ const getSignUp = (req, res) => {
   res.render("signup");
 };
 
-const createUser = passport.authenticate("local-signup", {
+const signUp = passport.authenticate("local.signup", {
   successRedirect:  "/profile",
   failureRedirect:  "/signup",
+  failureFlash:     true
+});
+
+const getSignIn = (req, res) => {
+  res.render("signin");
+};
+
+const signIn = passport.authenticate("local.signin", {
+  successRedirect:  "/profile",
+  failureRedirect:  "/signin",
   failureFlash:     true
 });
 
@@ -16,6 +26,8 @@ const getProfile = (req, res) => {
 
 module.exports = {
   getSignUp,
-  createUser,
+  signUp,
+  getSignIn,
+  signIn,
   getProfile
 };
