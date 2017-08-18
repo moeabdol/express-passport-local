@@ -20,6 +20,11 @@ const signIn = passport.authenticate("local.signin", {
   failureFlash:     true
 });
 
+const signOut = (req, res) => {
+  req.logout();
+  res.redirect("/");
+};
+
 const getProfile = (req, res) => {
   res.render("profile", { user: req.user });
 };
@@ -29,5 +34,6 @@ module.exports = {
   signUp,
   getSignIn,
   signIn,
+  signOut,
   getProfile
 };
