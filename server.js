@@ -11,6 +11,8 @@ const usersRouter = require("./routes/users");
 
 const app = express();
 
+require("./config/passport");
+
 // Connect to database
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/express-passport",
@@ -36,6 +38,7 @@ app.use(express.static(path.resolve(__dirname, "public")));
 
 // Configure session
 app.use(session({
+  name: "_myCookie",
   secret: "mysupersecret",
   resave: true,
   saveUninitialized: true,
