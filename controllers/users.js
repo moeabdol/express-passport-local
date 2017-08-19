@@ -25,6 +25,11 @@ const signOut = (req, res) => {
   res.redirect("/");
 };
 
+const isSignedIn = (req, res, next) => {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect("/signin");
+};
+
 const getProfile = (req, res) => {
   res.render("profile", { user: req.user });
 };
@@ -35,5 +40,6 @@ module.exports = {
   getSignIn,
   signIn,
   signOut,
+  isSignedIn,
   getProfile
 };
