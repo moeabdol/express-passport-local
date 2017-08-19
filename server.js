@@ -2,6 +2,7 @@ const express     = require("express");
 const path        = require("path");
 const bodyParser  = require("body-parser");
 const session     = require("express-session");
+const flash       = require("express-flash");
 const hbs         = require("express-handlebars");
 const mongoose    = require("mongoose");
 const passport    = require("passport");
@@ -44,6 +45,9 @@ app.use(session({
   saveUninitialized: true,
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
+
+// Configure flash
+app.use(flash());
 
 // Configure passport
 app.use(passport.initialize());

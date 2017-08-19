@@ -1,7 +1,7 @@
 const passport = require("passport");
 
 const getSignUp = (req, res) => {
-  res.render("signup");
+  res.render("signup", { error: req.flash("error") });
 };
 
 const signUp = passport.authenticate("local.signup", {
@@ -11,7 +11,7 @@ const signUp = passport.authenticate("local.signup", {
 });
 
 const getSignIn = (req, res) => {
-  res.render("signin");
+  res.render("signin", { error: req.flash("error") });
 };
 
 const signIn = passport.authenticate("local.signin", {

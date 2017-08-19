@@ -14,6 +14,10 @@
   <div class="container" style="margin-bottom:100px">
     <div class="text-center reg_msg">
       <h2 style="color:#808080"><span>SIGN IN</span></h2>
+
+      {{#if error}}
+        <span>{{error}}</span>
+      {{/if}}
     </div><br>
 
     <div class="row signup">

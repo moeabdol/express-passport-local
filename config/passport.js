@@ -20,7 +20,10 @@ passport.use("local.signup", new LocalStrategy({
 }, (req, email, password, done) => {
   User.findOne({ email: email }, (err, user) => {
     if (err)  { return done(err); }
-    if (user) { return done(null, false); }
+    if (user) {
+      req.flash("error", "User already exists!");
+      return done(null, false);
+    }
 
     let newUser = new User({
       fullname: req.body.name,
@@ -42,8 +45,14 @@ passport.use("local.signin", new LocalStrategy({
 }, (req, email, password, done) => {
   User.findOne({ email: email }, (err, user) => {
     if (err)  { return done(err); }
-    if (!user) { return done(null, false); }
-    if (!user.validatePassword(password)) { return done(null, false); }
+    if (!user) {
+      req.flash("error", "User email not found!");
+      return done(null, false);
+    }
+    if (!user.validatePassword(password)) {
+      req.flash("error", "User password is incorrect!");
+      return done(null, false);
+    }
     return done(null, user);
   });
 }));
